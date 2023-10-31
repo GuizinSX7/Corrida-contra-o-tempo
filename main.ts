@@ -1,4 +1,5 @@
 const color = require("cli-color");
+const prompt = require("prompt-sync")();
 
 const planta: number[][] = [
     [22, 22, 22, 22, 22, 33, 11, 22, 22, 22, 22, 22, 22, 11, 11, 22, 22, 22, 22, 22],
@@ -50,4 +51,7 @@ const mostrarPlanta = (): void => {
     }
 }
 
-mostrarPlanta();
+while (true) {
+    let escolha = prompt('Digite uma direção (W, a, s, d): ')
+    mostrarPlanta();
+}
