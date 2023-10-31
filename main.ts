@@ -24,16 +24,16 @@ const planta: number[][] = [
 
 const colorir = (text: number): string => {
     if (text == 22) {
-        return color.red.bgRed(text);
+        return color.red.bgRed('  ');
     }
     else if (text == 11) {
-        return color.blue.bgBlue(text);
+        return color.blue.bgBlue('  ');
     }
     else if (text == 33) {
-        return color.green.bgGreen(text);
+        return color.green.bgGreen('  ');
     }
     else {
-        return color.yellow.bgYellow(text);
+        return color.yellow.bgYellow('  ');
     }
 }
 
@@ -52,6 +52,9 @@ const mostrarPlanta = (): void => {
 }
 
 while (true) {
-    let escolha = prompt('Digite uma direção (W, a, s, d): ')
     mostrarPlanta();
+    let escolha = prompt('Digite uma direção (W, a, s, d) ou "q" para sair: ')
+    if (escolha?.toUpperCase() == 'Q') {
+        break
+    }
 }
