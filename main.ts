@@ -108,7 +108,7 @@ const direita = (planta:number[][]): void => {
 }
 
 const verificaProduto = (): boolean => {
-    for (var linha of planta) {
+    for (var linha of planta && planta1) {
         for (var item of linha) {
             if (item == 88) {
                 return false;
