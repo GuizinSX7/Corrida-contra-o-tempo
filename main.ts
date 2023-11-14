@@ -68,7 +68,7 @@ const mostrarPlanta = (planta_atual: number[][]): void => {
         }
         console.log(linha.toString().replaceAll(',', ''))
     }
-    console.log('Passos: ', passos);
+    console.log('Você deu', String(passos), 'passos.');
 }
 
 const descer = (planta:number[][]): void => {
