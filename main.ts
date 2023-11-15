@@ -43,15 +43,16 @@ const planta1: number[][] = [
     [22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22]
 ]
 
+
 const colorir = (text: number): string => {
     if (text == 22) {
-        return color.red.bgRed('  ')
+        return color.red.bgRed('  ');
     } else if (text == 11) {
-        return color.blue.bgBlue('  ')
+        return color.blue.bgBlue('  ');
     } else if (text == 33) {
-        return color.green.bgGreen('  ')
+        return color.green.bgGreen('  ');
     } else {
-        return color.yellow.bgYellow('  ')
+        return color.yellow.bgYellow('  ');
     }
 }
 
@@ -140,11 +141,13 @@ const start = (planta_atual:number[][]) => {
     } else if (escolha.toUpperCase() == 'D') {
         direita(planta_atual);
     }
-    if(x == 8 && y == 19){
+    if (x == 8 && y == 19){
+        planta1[15][0] = 11;
         planta_atual = planta1;
         x = 0;
         y = 4;
     } else if (x == 15 && y == 0) {
+        planta1[0][4] = 33;
         planta_atual = planta;
         x = 8;
         y = 19;
