@@ -1,5 +1,5 @@
 const color = require('cli-color');
-const input = require('prompt-sync')();
+const prompt = require('prompt-sync')();
 
 const planta: number[][] = [
     [22, 22, 22, 22, 22, 33, 11, 22, 22, 22, 22, 22, 22, 11, 11, 22, 22, 22, 22, 22],
@@ -43,6 +43,27 @@ const planta1: number[][] = [
     [22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22]
 ]
 
+const planta2: number[][] = [
+    [22, 11, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 33, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 88, 22, 22, 88, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 22, 22, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 22, 22, 11, 11, 11, 11, 22, 22, 11, 11, 11, 22, 22, 11, 11, 11, 22],
+    [22, 11, 11, 22, 22, 11, 11, 11, 11, 22, 22, 11, 11, 11, 22, 22, 11, 11, 11, 22],
+    [22, 11, 11, 22, 22, 11, 11, 11, 11, 22, 22, 11, 11, 11, 22, 22, 11, 11, 11, 22],
+    [22, 11, 11, 22, 22, 11, 11, 11, 11, 22, 22, 11, 11, 11, 22, 22, 11, 11, 11, 22],
+    [22, 11, 11, 22, 22, 11, 11, 11, 11, 22, 22, 11, 11, 11, 22, 22, 11, 11, 11, 22],
+    [22, 11, 22, 22, 22, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 22, 22, 22, 11, 22],
+    [22, 11, 22, 22, 22, 22, 22, 11, 11, 22, 22, 11, 11, 22, 22, 22, 22, 22, 11, 22],
+    [22, 11, 88, 22, 22, 11, 11, 11, 11, 22, 22, 11, 11, 88, 22, 22, 11, 11, 11, 22],
+    [22, 11, 11, 22, 22, 88, 11, 11, 11, 22, 22, 11, 11, 11, 22, 22, 11, 11, 11, 22],
+    [22, 11, 11, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 11, 11, 11, 22],
+    [22, 11, 11, 22, 22, 11, 11, 11, 88, 22, 22, 11, 11, 11, 22, 22, 11, 11, 11, 22],
+    [22, 11, 11, 22, 22, 11, 11, 11, 11, 22, 22, 11, 11, 11, 22, 22, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 88, 22],
+    [22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22]
+]
+
 
 const colorir = (text: number): string => {
     if (text == 22) {
@@ -51,6 +72,8 @@ const colorir = (text: number): string => {
         return color.blue.bgBlue('  ');
     } else if (text == 33) {
         return color.green.bgGreen('  ');
+    } else if (text == 44) {
+        return color.black.bgBlack('  ');
     } else {
         return color.yellow.bgYellow('  ');
     }
@@ -59,6 +82,8 @@ const colorir = (text: number): string => {
 var x: number = 0;
 var y: number = 5;
 var passos: number = 0;
+var encontrado: boolean = false;
+var encontrado1: boolean = false;
 
 const mostrarPlanta = (planta_atual: number[][]): void => {
     console.clear();
@@ -72,6 +97,8 @@ const mostrarPlanta = (planta_atual: number[][]): void => {
     console.log('Você deu', String(passos), 'passos.');
 }
 
+
+
 const descer = (planta:number[][]): void => {
     if (x + 1 < planta.length && planta[x + 1][y] !== 22) {
         planta[x][y] = 11;
@@ -80,6 +107,7 @@ const descer = (planta:number[][]): void => {
         passos++;
     }
 }
+
 
 const subir = (planta:number[][]): void => {
     if (x - 1 >= 0 && planta[x - 1][y] !== 22) {
@@ -108,15 +136,53 @@ const direita = (planta:number[][]): void => {
     }
 }
 
+
+const easter = (): void => {
+    for (var linha of planta) {
+        if (linha.includes(88)) {
+            encontrado = true;
+            break
+        } else {
+            encontrado = false;
+        }
+    }
+    for (var linha of planta1) {
+        if (linha.includes(88)) {
+            encontrado1 = true;
+            break
+        } else {
+            encontrado1 = false;
+        }
+    }
+    if (encontrado == false && encontrado1 == false) {
+        planta1[16][18] = 11;
+        planta1[17][18] = 11;
+    }
+}
+
 const verificaProduto = (): boolean => {
-    for (var linha of planta && planta1) {
+    for (var linha of planta) {
         for (var item of linha) {
             if (item == 88) {
-                return false;
+                return false
             }
         }
     }
-    return true;
+    for (var linha of planta1) {
+        for (var item of linha) {
+            if (item == 88) {
+                return false
+            }
+        }
+    }
+    for (var linha of planta2) {
+        for (var item of linha) {
+            if (item == 88) {
+                return false
+            }
+        }
+    }
+    return true
 }
 
 const verificaPlanata = (planta_atual:number[][]): boolean =>{
@@ -129,7 +195,8 @@ const verificaPlanata = (planta_atual:number[][]): boolean =>{
 }
 const start = (planta_atual:number[][]) => {
     mostrarPlanta(planta_atual);
-    let escolha: string = input('Digite uma direção (w, a, s, d) ou (q) para sair: ');
+    easter();
+    let escolha: string = prompt('Digite uma direção (w, a, s, d) ou (q) para sair: ');
     if (escolha.toUpperCase() == 'Q' || verificaProduto()) {
         return
     } else if (escolha.toUpperCase() == 'W') {
@@ -140,7 +207,7 @@ const start = (planta_atual:number[][]) => {
         descer(planta_atual);
     } else if (escolha.toUpperCase() == 'D') {
         direita(planta_atual);
-    }
+    } 
     if (x == 8 && y == 19){
         planta1[15][0] = 11;
         planta_atual = planta1;
@@ -151,6 +218,16 @@ const start = (planta_atual:number[][]) => {
         planta_atual = planta;
         x = 8;
         y = 19;
+    } else if (x == 17 && y == 18) {
+        planta2[0][1] = 11;
+        planta_atual = planta2;
+        x = 0;
+        y = 18;
+    } else if (x == 0 && y == 1) {
+        planta2[0][18] = 33;
+        planta_atual = planta1;
+        x = 17;
+        y = 18;
     }
     start(planta_atual);
 }
