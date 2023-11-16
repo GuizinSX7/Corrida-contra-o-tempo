@@ -64,6 +64,47 @@ const planta2: number[][] = [
     [22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22]
 ]
 
+const planta3: number[][] = [
+    [22, 11, 11, 11, 11, 33, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 88, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22],
+    [22, 11, 11, 11, 11, 11, 11, 11, 11, 11, 22]
+]
+
 
 const colorir = (text: number): string => {
     if (text == 22) {
@@ -84,6 +125,7 @@ var y: number = 5;
 var passos: number = 0;
 var encontrado: boolean = false;
 var encontrado1: boolean = false;
+var encontrado2: boolean = false;
 
 const mostrarPlanta = (planta_atual: number[][]): void => {
     console.clear();
@@ -160,6 +202,20 @@ const easter = (): void => {
     }
 }
 
+const easter1 = (): void => {
+    for (var linha of planta3) {
+        if(linha.includes(88)){
+            encontrado2 = true;
+            break
+        } else {
+            encontrado2 = false;
+        }
+    }
+    if (encontrado == false && encontrado1 == false && encontrado2 == false) {
+        planta3[1][17] = 11;
+    }
+}
+
 const verificaProduto = (): boolean => {
     for (var linha of planta) {
         for (var item of linha) {
@@ -182,6 +238,13 @@ const verificaProduto = (): boolean => {
             }
         }
     }
+    for (var linha of planta3) {
+        for (var item of linha) {
+            if (item == 88) {
+                return false
+            }
+        }
+    }
     return true
 }
 
@@ -196,6 +259,7 @@ const verificaPlanata = (planta_atual:number[][]): boolean =>{
 const start = (planta_atual:number[][]) => {
     mostrarPlanta(planta_atual);
     easter();
+    easter1();
     let escolha: string = prompt('Digite uma direção (w, a, s, d) ou (q) para sair: ');
     if (escolha.toUpperCase() == 'Q' || verificaProduto()) {
         return
@@ -228,6 +292,10 @@ const start = (planta_atual:number[][]) => {
         planta_atual = planta1;
         x = 17;
         y = 18;
+    } else if (x == 1 && y == 17) {
+        planta_atual = planta3;
+        x = 0;
+        y = 5;
     }
     start(planta_atual);
 }
